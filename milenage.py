@@ -10,7 +10,7 @@
 # Author: mmehra@juniper.net
 #
 
-import sys
+import sys, os
 import binascii
 from   Crypto.Cipher import AES
 from   itertools import izip
@@ -29,7 +29,7 @@ def AESEncrypt(key, buf):
     '''Encrypt buffer using AES-SHA1 128 algorithm
        @key: Key to be used for encryption
        @buf: Buffer to be encrypted'''
-    encryptor = AES.new(key, AES.MODE_CBC)
+    encryptor = AES.new(key, AES.MODE_CBC, os.urandom(16))
     return encryptor.encrypt(buf)
 
 
